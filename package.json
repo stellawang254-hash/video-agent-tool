@@ -1,0 +1,27 @@
+{
+  "name": "daily-video",
+  "version": "1.0.0",
+  "description": "Daily short-video production with Remotion — 3 styles (Explainer / Tutorial / Quote)",
+  "type": "module",
+  "scripts": {
+    "start": "remotion studio",
+    "render:explainer": "node scripts/render-daily.mjs content/sample-explainer.json outputs/explainer.mp4",
+    "render:tutorial": "node scripts/render-daily.mjs content/sample-tutorial.json outputs/tutorial.mp4",
+    "render:quote": "node scripts/render-daily.mjs content/sample-quote.json outputs/quote.mp4",
+    "render": "node scripts/render-daily.mjs",
+    "preview:frame": "remotion still Explainer out/poster.png --frame=30"
+  },
+  "dependencies": {
+    "@remotion/bundler": "^4.0.242",
+    "@remotion/cli": "^4.0.484",
+    "@remotion/renderer": "^4.0.242",
+    "@rspack/binding-darwin-arm64": "^2.1.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.242"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "typescript": "^5.5.0"
+  }
+}

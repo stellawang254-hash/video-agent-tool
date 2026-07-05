@@ -1,0 +1,9 @@
+node_modules/
+out/
+outputs/
+.DS_Store
+public/audio/*.wav
+
+# Only ignore generated videos in output dirs
+out/*.mp4
+outputs/*.mp4

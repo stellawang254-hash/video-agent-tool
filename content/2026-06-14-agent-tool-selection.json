@@ -1,0 +1,89 @@
+{
+  "style": "explainer",
+  "title": "Agent选工具的3层决策逻辑",
+  "subtitle": "4个防呆机制，带你彻底看懂",
+  "hook": "你知道AI Agent有50多个工具，它是怎么决定用哪个的？",
+  "problemItems": [
+    "大类决策：选错概率低，但不是没有",
+    "工具决策：create和update偶尔会搞混",
+    "参数决策：约束越少越容易翻车"
+  ],
+  "methodTitle": "三层决策逻辑",
+  "methodItems": [
+    {
+      "title": "大类决策",
+      "desc": "飞书→lark系列，一般不会错"
+    },
+    {
+      "title": "工具决策",
+      "desc": "匹配具体操作，偶尔会搞混"
+    },
+    {
+      "title": "参数决策",
+      "desc": "越到细节越容易翻车"
+    }
+  ],
+  "caseIntro": "Agent的四个防呆机制",
+  "caseSteps": [
+    "技能系统：从几百个工具过滤到3-5个",
+    "先验证再执行：查路径→确认→动手",
+    "清晰约束：指令越具体，犯错越少",
+    "事后纠错：当场纠正→保存偏好→更新偏好"
+  ],
+  "summary": "理解Agent的边界，而不是期待它完美",
+  "cta": "这才是用好Agent的第一步",
+  "captions": [
+    {
+      "from": 0,
+      "to": 90,
+      "text": "AI Agent怎么选择工具？"
+    },
+    {
+      "from": 90,
+      "to": 330,
+      "text": "三个层级的决策：大类、工具、参数，每一步都可能选错"
+    },
+    {
+      "from": 330,
+      "to": 930,
+      "text": "三层决策逻辑：大类→lark系，工具→匹配操作，参数→越细越好"
+    },
+    {
+      "from": 930,
+      "to": 1530,
+      "text": "四个防呆机制：技能过滤、先查后干、清晰约束、事后纠错"
+    },
+    {
+      "from": 1530,
+      "to": 1800,
+      "text": "理解Agent的边界而非期待完美，才是用好Agent的第一步"
+    }
+  ],
+  "audioFiles": [
+    {
+      "start": 0,
+      "end": 90,
+      "src": "/audio/01_title.mp3"
+    },
+    {
+      "start": 90,
+      "end": 330,
+      "src": "/audio/02_problem.mp3"
+    },
+    {
+      "start": 330,
+      "end": 930,
+      "src": "/audio/03_method.mp3"
+    },
+    {
+      "start": 930,
+      "end": 1530,
+      "src": "/audio/04_case.mp3"
+    },
+    {
+      "start": 1530,
+      "end": 1800,
+      "src": "/audio/05_summary.mp3"
+    }
+  ]
+}
