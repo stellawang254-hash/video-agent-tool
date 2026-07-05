@@ -28,6 +28,7 @@ Content JSON `style` field auto-selects the correct composition:
 3. Edit JSON: verify fields, add `captions`, adjust timing, map audio segments
 4. Generate TTS narration per scene → save to `public/audio/` (see Dubbing workflow below)
 5. `node scripts/render-daily.mjs content/<file>.json` → MP4
+6. Generate Douyin post → `outputs/YYYY-MM-DD-topic-post.md` (见下方 Publishing 章节)
 
 ## Caption rules
 - Burn-in subtitles in content JSON `captions` array
