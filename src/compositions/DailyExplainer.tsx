@@ -4,22 +4,16 @@ import {
   useCurrentFrame,
   interpolate,
   Audio,
-  OffthreadVideo,
   staticFile,
 } from "remotion";
 import {
-  BASE,
-  FONT_FAMILY,
-  EXPLAINER_THEME,
-  sceneOpacity,
-  fadeEnter,
-  audioVolume,
-  FADE_IN,
+  BASE, FONT_FAMILY, EXPLAINER_THEME, sceneOpacity, fadeEnter, audioVolume,
 } from "../styles/theme";
 import type { StyleTheme } from "../styles/theme";
 import { Caption } from "../components/Caption";
 import { TitleCard } from "../components/TitleCard";
 import { ProgressBar } from "../components/ProgressBar";
+import { SolidBackground } from "../components/BgDecorations";
 import { SceneCard } from "../components/SceneCard";
 import { BrandMark } from "../components/BrandMark";
 
@@ -45,27 +39,18 @@ export interface ExplainerContent {
 }
 
 // ══════════════════════════════════════════════════════════════════
-//  Timing: 观点解释型 — 60s @ 30fps = 1800f
-//   3s hook → 8s problem → 20s method → 20s case → 9s summary+cta
-//   3s hook → 8s problem → 20s method → 20s case → 9s summary+cta
+//  Timing — matches the audio durations
+// ══════════════════════════════════════════════════════════════════
 
-const S = { TITLE: 0, PROBLEM: 90, METHOD: 330, CASE: 930, SUMMARY: 1530 };
-const TOTAL = 1800;
+const S = { TITLE: 0, PROBLEM: 375, METHOD: 840, CASE: 1290, SUMMARY: 1950 };
+const TOTAL = 2340;
 const theme: StyleTheme = EXPLAINER_THEME;
 
 // ══════════════════════════════════════════════════════════════════
-//  VideoBackground — full-frame background video clip
+//  Background — pure gradient (no video)
 // ══════════════════════════════════════════════════════════════════
 
-const VideoBackground: React.FC = () => (
-  <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
-    <OffthreadVideo
-      src={staticFile("/background.mp4")}
-      volume={0}
-      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-    />
-  </div>
-);
+
 
 // ══════════════════════════════════════════════════════════════════
 //  Scene wrapper
@@ -101,11 +86,11 @@ const Scene: React.FC<React.PropsWithChildren<{
 };
 
 // ══════════════════════════════════════════════════════════════════
-//  1. Title — 3s
+//  1. Title
 // ══════════════════════════════════════════════════════════════════
 
 const TitleScene: React.FC<{ f: number; data: ExplainerContent }> = ({ f, data }) => (
-  <Scene f={f} start={S.TITLE} dur={120} badge="01">
+  <Scene f={f} start={S.TITLE} dur={375} badge="01">
     <TitleCard local={f - S.TITLE} title={data.title} subtitle={data.subtitle} theme={theme} />
     <div style={{ ...fadeEnter(f - S.TITLE, 18),
       fontSize: 28, color: BASE.subtext, textAlign: "center",
@@ -117,13 +102,13 @@ const TitleScene: React.FC<{ f: number; data: ExplainerContent }> = ({ f, data }
 );
 
 // ══════════════════════════════════════════════════════════════════
-//  2. Problem — 8s
+//  2. Problem
 // ══════════════════════════════════════════════════════════════════
 
 const ProblemScene: React.FC<{ f: number; data: ExplainerContent }> = ({ f, data }) => {
   const local = f - S.PROBLEM;
   return (
-    <Scene f={f} start={S.PROBLEM} dur={240} badge="02">
+    <Scene f={f} start={S.PROBLEM} dur={465} badge="02">
       <div style={{ ...fadeEnter(local, 0), fontSize: 40, fontWeight: 700, color: "#fff", marginBottom: 40, letterSpacing: 2 }}>
         常见误区
       </div>
@@ -137,13 +122,13 @@ const ProblemScene: React.FC<{ f: number; data: ExplainerContent }> = ({ f, data
 };
 
 // ══════════════════════════════════════════════════════════════════
-//  3. Method — 20s
+//  3. Method
 // ══════════════════════════════════════════════════════════════════
 
 const MethodScene: React.FC<{ f: number; data: ExplainerContent }> = ({ f, data }) => {
   const local = f - S.METHOD;
   return (
-    <Scene f={f} start={S.METHOD} dur={600} badge="03">
+    <Scene f={f} start={S.METHOD} dur={450} badge="03">
       <div style={{ ...fadeEnter(local, 0), fontSize: 44, fontWeight: 700, color: theme.accent, marginBottom: 40, letterSpacing: 2 }}>
         {data.methodTitle}
       </div>
@@ -171,13 +156,13 @@ const MethodScene: React.FC<{ f: number; data: ExplainerContent }> = ({ f, data 
 };
 
 // ══════════════════════════════════════════════════════════════════
-//  4. Case — 20s
+//  4. Case
 // ══════════════════════════════════════════════════════════════════
 
 const CaseScene: React.FC<{ f: number; data: ExplainerContent }> = ({ f, data }) => {
   const local = f - S.CASE;
   return (
-    <Scene f={f} start={S.CASE} dur={600} badge="04">
+    <Scene f={f} start={S.CASE} dur={660} badge="04">
       <div style={{ ...fadeEnter(local, 0), fontSize: 38, fontWeight: 700, color: "#fff", marginBottom: 10, letterSpacing: 2 }}>
         {data.caseIntro}
       </div>
@@ -199,13 +184,13 @@ const CaseScene: React.FC<{ f: number; data: ExplainerContent }> = ({ f, data })
 };
 
 // ══════════════════════════════════════════════════════════════════
-//  5. Summary + CTA — 9s
+//  5. Summary + CTA
 // ══════════════════════════════════════════════════════════════════
 
 const SummaryScene: React.FC<{ f: number; data: ExplainerContent }> = ({ f, data }) => {
   const local = f - S.SUMMARY;
   return (
-    <Scene f={f} start={S.SUMMARY} dur={270} hold>
+    <Scene f={f} start={S.SUMMARY} dur={390} hold>
       <div style={{ ...fadeEnter(local, 0),
         fontSize: 48, fontWeight: 800, color: "#fff",
         textAlign: "center", lineHeight: 1.5, marginBottom: 20,
@@ -234,7 +219,7 @@ export const DailyExplainer: React.FC<{ content?: ExplainerContent }> = ({ conte
   const frame = useCurrentFrame();
   const data = content!;
 
-  // Build caption entries from scene data
+  // Use captions from content JSON; fallback to auto-generated
   const captions = data.captions || [
     { from: S.TITLE, to: S.PROBLEM, text: data.hook },
     { from: S.PROBLEM, to: S.METHOD, text: data.problemItems.join("；") },
@@ -246,17 +231,17 @@ export const DailyExplainer: React.FC<{ content?: ExplainerContent }> = ({ conte
 
   return (
     <AbsoluteFill style={{ ...Container, padding: 0 }}>
-      <VideoBackground />
+      <SolidBackground theme={theme} />
 
       {data.audioFiles?.map((a, i) => (
         <Audio key={i} src={staticFile(a.src)} volume={(f) => audioVolume(f, a.start, a.end - a.start)} />
       ))}
 
-      {frame >= S.TITLE && frame < S.TITLE + 120 && <TitleScene f={frame} data={data} />}
-      {frame >= S.PROBLEM && frame < S.PROBLEM + 240 && <ProblemScene f={frame} data={data} />}
-      {frame >= S.METHOD && frame < S.METHOD + 600 && <MethodScene f={frame} data={data} />}
-      {frame >= S.CASE && frame < S.CASE + 600 && <CaseScene f={frame} data={data} />}
-      {frame >= S.SUMMARY && frame < S.SUMMARY + 270 && <SummaryScene f={frame} data={data} />}
+      {frame >= S.TITLE && frame < S.TITLE + 375 && <TitleScene f={frame} data={data} />}
+      {frame >= S.PROBLEM && frame < S.PROBLEM + 465 && <ProblemScene f={frame} data={data} />}
+      {frame >= S.METHOD && frame < S.METHOD + 450 && <MethodScene f={frame} data={data} />}
+      {frame >= S.CASE && frame < S.CASE + 660 && <CaseScene f={frame} data={data} />}
+      {frame >= S.SUMMARY && frame < S.SUMMARY + 390 && <SummaryScene f={frame} data={data} />}
 
       <Caption text={activeCaption?.text} />
       <ProgressBar frame={frame} style="explainer" theme={theme} />

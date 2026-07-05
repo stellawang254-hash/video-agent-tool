@@ -92,11 +92,13 @@ try {
     composition,
     serveUrl,
     codec: "h264",
+    port: 6125,
     outputLocation: outPath,
     inputProps: { content },
     chromiumOptions: {
       gl: "angle",
     },
+    forceIPv4: true,
   });
 
   const size = fs.statSync(outPath).size;

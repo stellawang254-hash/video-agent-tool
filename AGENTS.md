@@ -58,21 +58,21 @@ Derive the dubbing script from the content JSON. Each scene gets a short narrati
 | 04_case | 930-1530f (20s) | 18-20s |
 | 05_summary + CTA | 1530-1800f (9s) | 8-10s |
 
-**Audio should be slightly shorter than the scene** to allow fade-in/out padding.
+**Audio should be slightly shorter than the scene** to allow fade-in padding. The dubbing flows continuously across scenes without gaps.
 
 ### 2. Generate TTS audio
 
 Use `bl speech synthesize` to generate narration from the dubbing script:
 
 ```
-bl speech synthesize --text-file script_01_title.txt --voice loitering_child --out public/audio/01_title.mp3
-bl speech synthesize --text-file script_02_problem.txt --voice loitering_child --out public/audio/02_problem.mp3
-bl speech synthesize --text-file script_03_method.txt --voice loitering_child --out public/audio/03_method.mp3
-bl speech synthesize --text-file script_04_case.txt --voice loitering_child --out public/audio/04_case.mp3
-bl speech synthesize --text-file script_05_summary.txt --voice loitering_child --out public/audio/05_summary.mp3
+bl speech synthesize --text-file script_01_title.txt --voice longxiaochun_v3 --out public/audio/01_title.mp3
+bl speech synthesize --text-file script_02_problem.txt --voice longxiaochun_v3 --out public/audio/02_problem.mp3
+bl speech synthesize --text-file script_03_method.txt --voice longxiaochun_v3 --out public/audio/03_method.mp3
+bl speech synthesize --text-file script_04_case.txt --voice longxiaochun_v3 --out public/audio/04_case.mp3
+bl speech synthesize --text-file script_05_summary.txt --voice longxiaochun_v3 --out public/audio/05_summary.mp3
 ```
 
-Recommended voice: `loitering_child` (Chinese female, natural tone).
+Recommended voice: `longxiaochun_v3` (龙小淳 — 知性积极女).
 
 ### 3. Audio file naming convention
 
@@ -104,7 +104,7 @@ Map each audio segment to its scene frame range:
 
 - `start` / `end`: frame range (at 30fps) where this audio plays
 - `src`: path relative to `public/`, must start with `/audio/`
-- Each audio file gets automatic fade-in (10f) and fade-out (15f or 15% duration) via `audioVolume()` in theme.ts
+- Each audio file gets automatic fade-in (10f) only via `audioVolume()` in theme.ts (no fade-out between segments for continuous dubbing)
 
 ### 5. Calculate frame ranges from audio duration
 

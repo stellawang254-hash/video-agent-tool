@@ -1,7 +1,7 @@
 import React from "react";
 import {
   AbsoluteFill, useCurrentFrame, interpolate,
-  Audio, OffthreadVideo, staticFile,
+  Audio, staticFile,
 } from "remotion";
 import {
   BASE, FONT_FAMILY, QUOTE_THEME,
@@ -11,6 +11,7 @@ import type { StyleTheme } from "../styles/theme";
 import { Caption } from "../components/Caption";
 import { TitleCard } from "../components/TitleCard";
 import { ProgressBar } from "../components/ProgressBar";
+import { SolidBackground } from "../components/BgDecorations";
 import { SceneCard } from "../components/SceneCard";
 import { BrandMark } from "../components/BrandMark";
 
@@ -42,18 +43,10 @@ const theme: StyleTheme = QUOTE_THEME;
 
 
 // ══════════════════════════════════════════════════════════════════
-//  VideoBackground — full-frame background video clip
+//  SolidBackground — pure solid color
 // ══════════════════════════════════════════════════════════════════
 
-const VideoBackground: React.FC = () => (
-  <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
-    <OffthreadVideo
-      src={staticFile("/background.mp4")}
-      volume={0}
-      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-    />
-  </div>
-);
+
 
 // ══════════════════════════════════════════════════════════════════
 //  Scene wrapper
@@ -235,7 +228,7 @@ export const QuoteCard: React.FC<{ content?: QuoteContent }> = ({ content }) => 
 
   return (
     <AbsoluteFill style={{ ...Container, padding: 0 }}>
-      <VideoBackground />
+      <SolidBackground theme={theme} />
 
       {data.audioFiles?.map((a, i) => (
         <Audio key={i} src={staticFile(a.src)} volume={(f) => audioVolume(f, a.start, a.end - a.start)} />

@@ -97,17 +97,11 @@ export const audioVolume = (
 ) => {
   const local = frame - sceneStart;
   if (local < 0 || local >= dur) return 0;
-  const fadeIn = interpolate(local, [0, 10], [0, 1], {
+  // Fade-in only — no fade-out between segments for continuous dubbing
+  return interpolate(local, [0, 10], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const fadeOutFrames = Math.min(15, Math.floor(dur * 0.15));
-  const outStart = dur - fadeOutFrames;
-  const fadeOut = interpolate(local, [outStart, dur], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  return Math.min(fadeIn, fadeOut);
 };
 
 /** Smooth looping offset for floating elements */

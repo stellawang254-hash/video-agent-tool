@@ -91,17 +91,17 @@ outputs/YYYY-MM-DD-topic.mp4
 
 ### 生成配音
 
-使用阿里云 BaiLian TTS（推荐语音：`loitering_child`）：
+使用阿里云 BaiLian TTS（推荐语音：`longxiaochun_v3`（龙小淳 — 知性积极女））：
 
 ```bash
 bl speech synthesize \
   --text-file scripts/script_01.txt \
-  --voice loitering_child \
+  --voice longxiaochun_v3 \
   --out public/audio/01_title.mp3
 
 bl speech synthesize \
   --text-file scripts/script_02.txt \
-  --voice loitering_child \
+  --voice longxiaochun_v3 \
   --out public/audio/02_problem.mp3
 
 # ... 以此类推 03_method, 04_case, 05_summary
@@ -178,7 +178,7 @@ video-agent-tool/
 │   │   ├── 03_method.mp3
 │   │   ├── 04_case.mp3
 │   │   └── 05_summary.mp3
-│   ├── background.mp4            # 全屏背景视频
+│   ├── background.mp4            # 背景视频（不再使用，保留兼容）
 │   └── assets/
 ├── scripts/
 │   ├── render-daily.mjs          # 主渲染脚本
