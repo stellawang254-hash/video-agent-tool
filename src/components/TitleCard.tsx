@@ -10,8 +10,7 @@ interface TitleCardProps {
 }
 
 /**
- * Scene title card with subtitle and accent line.
- * Title max 2 lines, subtitle below.
+ * Scene title card — bigger, with decorative accent glow and line.
  */
 export const TitleCard: React.FC<TitleCardProps> = ({
   local,
@@ -21,46 +20,54 @@ export const TitleCard: React.FC<TitleCardProps> = ({
 }) => {
   return (
     <>
+      {/* Title */}
       <div
         style={{
           ...fadeEnter(local, 0),
-          fontSize: 56,
+          fontSize: 72,
           fontWeight: 800,
           color: "#ffffff",
           textAlign: "center",
           lineHeight: 1.3,
-          letterSpacing: 2,
+          letterSpacing: 3,
+          textShadow: `0 4px 30px ${theme.glow}`,
         }}
       >
         {title}
       </div>
+
+      {/* Decorative accent glow line */}
+      <div
+        style={{
+          width: 80,
+          height: 4,
+          borderRadius: 2,
+          background: `linear-gradient(90deg, transparent, ${theme.accent}, transparent)`,
+          marginTop: 24,
+          marginBottom: subtitle ? 20 : 28,
+          opacity: fadeEnter(local, 6).opacity,
+          boxShadow: `0 0 20px ${theme.glow}`,
+        }}
+      />
+
+      {/* Subtitle */}
       {subtitle && (
         <div
           style={{
             ...fadeEnter(local, 12),
-            fontSize: 36,
+            fontSize: 44,
             fontWeight: 700,
             color: theme.accent,
             textAlign: "center",
             letterSpacing: 4,
             lineHeight: 1.4,
-            marginTop: 16,
+            marginTop: 0,
+            textShadow: `0 2px 12px ${theme.glow}`,
           }}
         >
           {subtitle}
         </div>
       )}
-      <div
-        style={{
-          width: 60,
-          height: 3,
-          borderRadius: 2,
-          background: theme.accent,
-          marginTop: subtitle ? 24 : 20,
-          marginBottom: 24,
-          opacity: fadeEnter(local, subtitle ? 18 : 12).opacity,
-        }}
-      />
     </>
   );
 };

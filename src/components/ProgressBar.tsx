@@ -6,6 +6,7 @@ interface ProgressBarProps {
   frame: number;
   style: "explainer" | "tutorial" | "quote";
   theme: StyleTheme;
+  totalFrames?: number;
 }
 
 /** Bottom progress bar — shows video playback progress */
@@ -13,8 +14,9 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   frame,
   style,
   theme,
+  totalFrames,
 }) => {
-  const total = STYLE_FRAMES[style];
+  const total = totalFrames ?? STYLE_FRAMES[style];
   return (
     <div
       style={{

@@ -35,10 +35,10 @@ export const Caption: React.FC<CaptionProps> = ({ text, opacity = 1 }) => {
         style={{
           background: "rgba(0,0,0,0.65)",
           borderRadius: 14,
-          padding: "14px 32px",
-          maxWidth: 820,
+          padding: "18px 40px",
+          maxWidth: 920,
           color: "#ffffff",
-          fontSize: 32,
+          fontSize: 36,
           fontWeight: 600,
           fontFamily: FONT_FAMILY,
           textAlign: "center",
