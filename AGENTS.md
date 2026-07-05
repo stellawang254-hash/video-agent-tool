@@ -152,4 +152,44 @@ Both approaches work with the same `audioFiles[]` structure in the content JSON 
 
 ## After rendering
 Output goes to `outputs/`. Filename convention: `YYYY-MM-DD-topic.mp4`.
-Verify output plays correctly before publishing.
+Verify output plays correctly before publishing, then generate the Douyin post (see Publishing section below).
+
+## Publishing: 抖音发布文案
+
+每生成一个视频，**必须同步生成**抖音发布文案，保存为 `outputs/YYYY-MM-DD-topic-post.md`。
+
+### 文案模板
+
+```markdown
+【{标题}】
+
+{1-2句核心观点提炼}
+
+{3-5句扩展说明，提炼视频中最具传播力的内容}
+
+#AI #人工智能 #{相关话题1} #{相关话题2} #{相关话题3}
+
+@{提及账号}
+```
+
+### 生成规则
+
+1. **从 content JSON 提取素材**：用 `title` 作视频标题，`hook` + `summary` + `cta` 提炼核心观点。
+2. **标题**（【】内）：直接使用 `title`，可微调使其更有传播力。
+3. **核心观点**（第1-2句）：从 `hook`、`summary` 提取最尖锐的洞察，用口语化重写。
+4. **扩展说明**（第3-5句）：从 `problemItems`、`methodItems`、`caseSteps` 提炼亮点。
+5. **话题标签**（#）：至少 3 个，覆盖通用热标和垂直领域标签。
+6. **账号提及**（@）：根据内容风格添加 @相关账号。
+
+### 示例
+
+```markdown
+【AI行业最该警惕的不是模型幻觉，而是管理幻觉】
+
+看了一个Demo就以为业务要落地了？把AI当成万能开关？
+
+真正的AI转型，靠的是流程、数据、场景和边界。五个基本功帮你避开管理幻觉。
+
+#AI #人工智能 #数字化转型 #管理思维 #职场提升
+```
+
